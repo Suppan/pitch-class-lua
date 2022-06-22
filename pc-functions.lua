@@ -29,7 +29,7 @@ function list_min(arr)
    for i = 2, #arr do
        if(arr[i] < minx) then minx = arr[i] end
    end
-return minx
+   return minx
 end
 
 function get_prime_set(chord,invers)
