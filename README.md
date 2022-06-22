@@ -3,7 +3,7 @@ simple set class calculator written in Lua
 
 # Usage
 
-after installing Lua (ie on Mac via homebrew: brew install lua)
+after installing Lua (ie via homebrew: brew install lua)
 
 enter midi values in terminal: 
 ```
