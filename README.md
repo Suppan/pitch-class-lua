@@ -11,5 +11,5 @@ result:
 ```
 chord: 60 64 55
 name: 3-11
-prime: 037 iv:001110
+prime: 037 iv: 001110
 ```
