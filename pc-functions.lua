@@ -3,14 +3,16 @@ dofile("pc-sets.lua")
 
 function member(arr, x)
     for _, v in pairs(arr) do
-        if v == x then return true end
+        if v == x then 
+	return true end
     end
     return false
 end
 
 function rm_reps(arr)
     local lenx = #arr
-    if(lenx < 2) then return arr
+    if(lenx < 2) then 
+	return arr
     else
         local t = {}
         for i = 1,lenx do
