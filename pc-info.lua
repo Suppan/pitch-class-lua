@@ -2,7 +2,7 @@
 
 dofile("pc-functions.lua")
 
-if(#arg > 0) then
+if(#arg > 1) then
     local set = arg
     print("chord: " .. table.concat(arg, " "))
     print("name: " .. pc_info(set,"set"))
