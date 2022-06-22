@@ -34,9 +34,9 @@ end
 
 function get_prime_set(chord,invers)
    local set0 = {}                           -- chord -> pc
-   local setx  = {} 		                 -- = set0 to reset
-   local set1 = {} 		                     -- set1 = normalform = set1 % 12
-   local set2 = {} 		                     -- set2 = primeform
+   local setx  = {} 		             -- = set0 to reset
+   local set1 = {} 		             -- set1 = normalform = set1 % 12
+   local set2 = {} 		             -- set2 = primeform
    local posarr = {} 	                     -- collect result positions
    local diffx = {}
    local posaddx = 1
