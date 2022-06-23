@@ -5,7 +5,7 @@ dofile("pc-functions.lua")
 if(#arg > 0) then
     local set = arg
     print("chord: " .. table.concat(arg, " "))
-    print("name: " .. pc_info(set,"set"))
+    print("name: " .. pc_info(set,"name"))
     print("prime: " .. pc_info(set,"prime") .. " iv: " .. pc_info(set,"vector"))
 end
 
