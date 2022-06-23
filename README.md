@@ -1,5 +1,5 @@
 # **pitch-class-lua**
-simple set class calculator written in Lua
+basic set class calculator written in Lua
 
 after installing Lua (ie via homebrew: brew install lua)
 
