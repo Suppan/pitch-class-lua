@@ -89,7 +89,7 @@ function get_prime_set(chord,invers)
            if(diffx[i] == minx) then table.insert(posarr,i) end
         end
 
-        -- 2. span test (before last - first)
+        -- 2. span test (penultimate position - first, before penultimate position - first,...)
         if (#posarr > 1) then
             --reset setx
             for i = 1, #set0 do
