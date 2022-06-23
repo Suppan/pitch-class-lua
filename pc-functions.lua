@@ -156,14 +156,14 @@ function pc2string(arr)
 end
 
 function pc_info(chord,mode)
-    mode = mode or "set"
+    mode = mode or "name"
     
     local modepos = 1
     local a = pc2string(get_prime_set(chord,false))
     local b = pc2string(get_prime_set(chord,true))
     local resx
 
-    if(mode == "set") then modepos = 1
+    if(mode == "name") then modepos = 1
         elseif (mode == "prime") then modepos = 2
         elseif (mode == "vector") then modepos = 3
     end
@@ -243,7 +243,7 @@ end
 
 --test:
 --local set = {64,65,69,72}
---print(pc_info(set,"set"))
+--print(pc_info(set,"name"))
 --print(pc_info(set,"prime"))
 --print(pc_info(set,"vector"))
 
