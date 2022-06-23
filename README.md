@@ -3,7 +3,7 @@ simple set class calculator written in Lua
 
 after installing Lua (ie via homebrew: brew install lua)
 
-enter midi values in terminal: 
+enter midi values [0-128] in terminal: 
 ```
 lua pc-info.lua 60 64 55
 ```
