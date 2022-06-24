@@ -69,33 +69,8 @@ function get_prime_set(chord,invers)
         table.insert(set2,0)
         return  set2
         else
-        --1. span test (last - first)
-        for j = 1, #set0 do
-	        local posstart = ((j -1) % #set0) + 1
-	        local posend = ((j + #set0  - 2) % #set0) + 1
-	        local posendbefore = ((j + #set0  - 3) % #set0) + 1
-	        local a = setx[posstart]
-	        local b = setx[posend]
-	        local c = setx[posendbefore]
-	        if(b<c) then b = b + 12; setx[posend] = b end
-	        if member(posarr,j) then
-	           diffx[j] =  b - a
-	        end
-        end
-        local minx = list_min(diffx)
-        posarr = {}
-
-        for i = 1, #set0 do
-           if(diffx[i] == minx) then table.insert(posarr,i) end
-        end
-
-        -- 2. span test (penultimate position - first, before penultimate position - first,...)
+        -- span test (last - first, penultimate position - first, before penultimate position - first,...)
         if (#posarr > 1) then
-            --reset setx
-            for i = 1, #set0 do
-                setx[i] = set0[i]
-            end
-
             while (#posarr > 1 and posaddx < (#set0 - 1) ) do
                 for j = 1, #set0 do
                     local posstart = ((j -1) % #set0) + 1
@@ -121,6 +96,10 @@ function get_prime_set(chord,invers)
                 end
                 posaddx = posaddx + 1
                 if (#posarr == 1) then break end
+		--reset setx
+            	for i = 1, #set0 do
+                   setx[i] = set0[i]
+            	end
             end
         end
 
