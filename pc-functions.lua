@@ -56,10 +56,6 @@ function get_prime_set(chord,invers)
         end
         table.sort(set0)
    end
-
-   for i = 1, #set0 do
-      setx[i] = set0[i]
-   end
  
    for i = 1, #set0 do
       posarr[i] = i
@@ -72,6 +68,10 @@ function get_prime_set(chord,invers)
         -- span test (last - first, penultimate position - first, before penultimate position - first,...)
         if (#posarr > 1) then
             while (#posarr > 1 and posaddx < (#set0 - 1) ) do
+		--reset setx
+            	for i = 1, #set0 do
+                   setx[i] = set0[i]
+            	end
                 for j = 1, #set0 do
                     local posstart = ((j -1) % #set0) + 1
                     local posend = ((j + #set0  - 2 - posaddx) % #set0) + 1
@@ -96,10 +96,6 @@ function get_prime_set(chord,invers)
                 end
                 posaddx = posaddx + 1
                 if (#posarr == 1) then break end
-		--reset setx
-            	for i = 1, #set0 do
-                   setx[i] = set0[i]
-            	end
             end
         end
 
