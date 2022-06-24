@@ -40,7 +40,7 @@ function get_prime_set(chord,invers)
    local set2 = {} 		             -- set2 = primeform
    local posarr = {} 	                     -- collect result positions
    local diffx = {}
-   local posaddx = 1
+   local posaddx = 0
    local firstval
 
    for i = 1, #chord do
