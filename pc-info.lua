@@ -4,7 +4,7 @@ dofile("pc-functions.lua")
 
 if(#arg > 0) then
     local chord = arg
-    local name,prime, vector, normal = pc_info(chord)
+    local name,prime,vector,normal = pc_info(chord)
     print("midi: " .. table.concat(chord," "))
     print("normal: " .. table.concat(normal," "))
     print("prime: " .. prime)
