@@ -1,6 +1,6 @@
 #!/usr/bin/env lua
 
-dofile("pc-functions.lua")
+require 'pc-functions'
 
 if(#arg > 0) then
     local chord = arg
