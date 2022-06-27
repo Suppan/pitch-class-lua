@@ -9,9 +9,11 @@ lua pc-info.lua 60 64 55
 ```
 result:
 ```
-chord: 60 64 55
+midi: 60 64 55
+normal: 0 4 7
+prime: 037
 name: 3-11
-prime: 037 iv: 001110
+vector: 001110
 ```
 *************
 This program is free software. It is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
