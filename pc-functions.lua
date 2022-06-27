@@ -2,27 +2,21 @@ dofile("pc-sets.lua")
 
 function member(arr, x)
     for _, v in pairs(arr) do
-        if v == x then 
-	return true end
+        if v == x then return true end
     end
     return false
 end
 
-function rm_reps(arr)
-    local lenx = #arr
-    if(lenx < 2) then 
-	return arr
-    else
-        local t = {}
-        for i = 1,lenx do
-            local midix = arr[i]
-            if(midix and midix ~= arr[i+1])
-                then
-                table.insert(t,midix)
-            end	
+function rm_dups(arr)
+    local hash = {}
+    local t = {}
+    for _,v in ipairs(arr) do
+        if (not hash[v]) then
+        t[#t+1] = v
+        hash[v] = true
         end
-        return t
     end
+    return t
 end
   
 function list_min(arr)
@@ -30,33 +24,31 @@ function list_min(arr)
    for i = 2, #arr do
        if(arr[i] < minx) then minx = arr[i] end
    end
-   return minx
+return minx
 end
 
-function get_prime_set(chord,invers)
+function get_normal_form(chord,invers)
    local set0 = {}                           -- chord -> pc
-   local setx  = {} 		             -- = set0 to reset
-   local set1 = {} 		             -- set1 = normalform = set1 % 12
-   local set2 = {} 		             -- set2 = primeform
-   local posarr = {} 	                     -- collect result positions
+   local setx  = {}                          -- to reset
+   local set1 = {}                           -- normalform
+   local posarr = {}                         -- collect result positions
    local diffx = {}
    local posaddx = 0
-   local firstval
 
    for i = 1, #chord do
       set0[i] = math.floor(chord[i] % 12)    --quartertones -> rounded
    end
 
-   table.sort(set0)
-   set0 = rm_reps(set0)
+   set0 = rm_dups(set0)
 
     if invers then
         for i = 1, #set0 do
             set0[i] = (12 - set0[i]) % 12
         end
-        table.sort(set0)
    end
  
+   table.sort(set0)
+   
    for i = 1, #set0 do
       posarr[i] = i
    end
@@ -65,13 +57,13 @@ function get_prime_set(chord,invers)
         table.insert(set2,0)
         return  set2
         else
-        -- span test (last - first, penultimate position - first, before penultimate position - first,...)
+        --span test (span test (last - first, penultima last - first, before penultima last - first)
         if (#posarr > 1) then
             while (#posarr > 1 and posaddx < (#set0 - 1) ) do
-		--reset setx
+            	--reset setx
             	for i = 1, #set0 do
-                   setx[i] = set0[i]
-            	end
+                	setx[i] = set0[i]
+           	 	end
                 for j = 1, #set0 do
                     local posstart = ((j -1) % #set0) + 1
                     local posend = ((j + #set0  - 2 - posaddx) % #set0) + 1
@@ -99,24 +91,27 @@ function get_prime_set(chord,invers)
             end
         end
 
-        firstval = set0[posarr[1]]
-        set1[1] = firstval
-
-        for i = 2, #set0 do
-          local k = ((i + posarr[1] - 2) % #set0) + 1
-          local addx = 0
-          if (set1[i-1] > set0[k]) then addx = 12 end
-          set1[i] = set0[k] + addx
-        end
+        local posres = posarr[1]
 
         for i = 1, #set0 do
-          local pcx = set1[i] - set1[1]
-          table.insert(set2,pcx)
+        local pos2 = ((i + posres - 2) % #set0) + 1
+          set1[i] = set0[pos2] % 12
         end
 
-        return set2
+        return set1
     end
 end
+
+
+function normal2prime_form(normal_set)
+   local t = {}
+   local firstval = normal_set[1]
+   for i = 1, #normal_set do
+   t[i] = (normal_set[i] - firstval) % 12
+   end
+   return t
+end
+
 
 function pc2string(arr)
     local stringx  = ""
@@ -130,95 +125,83 @@ function pc2string(arr)
     return stringx
 end
 
+
 function pc_info(chord,mode)
-    mode = mode or "name"
-    
-    local modepos = 1
-    local a = pc2string(get_prime_set(chord,false))
-    local b = pc2string(get_prime_set(chord,true))
+	
+    local normal_a = get_normal_form(chord,false)
+    local a = pc2string(normal2prime_form(normal_a,false))
+    local b = pc2string(normal2prime_form(get_normal_form(normal_a,true)))
     local resx
 
-    if(mode == "name") then modepos = 1
-        elseif (mode == "prime") then modepos = 2
-        elseif (mode == "vector") then modepos = 3
-    end
-
     if(#a == 1) then
-        resx = pc_data1[1][modepos]
+        resx = pc_data1[1]
     elseif (#a == 12) then
-        resx = pc_data12[1][modepos]
+        resx = pc_data12[1]
     elseif (#a == 11) then
-        resx = pc_data11[1][modepos]
+        resx = pc_data11[1]
     elseif (#a == 2) then
         for j = 1, #pc_data2 do
            if(pc_data2[j][2] == a or pc_data2[j][2] == b) then
-                resx = pc_data2[j][modepos]
+                resx = pc_data2[j]
                 break
            end 
         end   
     elseif (#a == 10) then
         for j = 1, #pc_data10 do
            if(pc_data10[j][2] == a or pc_data10[j][2] == b) then
-                resx = pc_data10[j][modepos]
+                resx = pc_data10[j]
                 break
            end 
         end  
     elseif (#a == 3) then
         for j = 1, #pc_data3 do
            if(pc_data3[j][2] == a or pc_data3[j][2] == b) then
-                resx = pc_data3[j][modepos]
+                resx = pc_data3[j]
                 break
            end 
         end  
     elseif (#a == 9) then
         for j = 1, #pc_data9 do
            if(pc_data9[j][2] == a or pc_data9[j][2] == b) then
-                resx = pc_data9[j][modepos]
+                resx = pc_data9[j]
                 break
            end 
         end  
     elseif (#a == 4) then
         for j = 1, #pc_data4 do
            if(pc_data4[j][2] == a or pc_data4[j][2] == b) then
-                resx = pc_data4[j][modepos]
+                resx = pc_data4[j]
                 break
            end 
         end  
     elseif (#a == 8) then
         for j = 1, #pc_data8 do
            if(pc_data8[j][2] == a or pc_data8[j][2] == b) then
-                resx = pc_data8[j][modepos]
+                resx = pc_data8[j]
                 break
            end 
         end  
     elseif (#a == 7) then
         for j = 1, #pc_data7 do
            if(pc_data7[j][2] == a or pc_data7[j][2] == b) then
-                resx = pc_data7[j][modepos]
+                resx = pc_data7[j]
                 break
            end 
         end 
     elseif (#a == 5) then
         for j = 1, #pc_data5 do
            if(pc_data5[j][2] == a or pc_data5[j][2] == b) then
-                resx = pc_data5[j][modepos]
+                resx = pc_data5[j]
                 break
            end 
         end   
     elseif (#a == 6) then
         for j = 1, #pc_data6 do
            if(pc_data6[j][2] == a or pc_data6[j][2] == b) then
-                resx = pc_data6[j][modepos]
+                resx = pc_data6[j]
                 break
            end 
         end
     end
-    return resx
+    return resx[1],resx[2],resx[3],normal_a
 end
-
---test:
---local set = {64,65,69,72}
---print(pc_info(set,"name"))
---print(pc_info(set,"prime"))
---print(pc_info(set,"vector"))
-
