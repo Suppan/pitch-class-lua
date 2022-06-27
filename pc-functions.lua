@@ -1,4 +1,4 @@
-dofile("pc-sets.lua")
+require 'pc-sets'
 
 function member(arr, x)
     for _, v in pairs(arr) do
