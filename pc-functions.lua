@@ -126,7 +126,7 @@ function pc2string(arr)
 end
 
 
-function pc_info(chord,mode)
+function pc_info(chord)
 	
     local normal_a = get_normal_form(chord,false)
     local a = pc2string(normal2prime_form(normal_a,false))
