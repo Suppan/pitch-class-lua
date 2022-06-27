@@ -203,5 +203,5 @@ function pc_info(chord)
            end 
         end
     end
-    return resx[1],resx[2],resx[3],normal_a
+    return normal_a,resx[1],resx[2],resx[3]
 end
