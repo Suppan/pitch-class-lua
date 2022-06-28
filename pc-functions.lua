@@ -127,8 +127,9 @@ end
 
 function pc_info(chord)
     local normal_a = get_normal_form(chord,false)
-    local a = pc2string(normal2prime_form(normal_a,false))
-    local b = pc2string(normal2prime_form(get_normal_form(normal_a,true)))
+    local normal_b = get_normal_form(normal_a,true)
+    local a = pc2string(normal2prime_form(normal_a))
+    local b = pc2string(normal2prime_form(normal_b))
     local resx
 
     if(#a == 1) then
