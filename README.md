@@ -3,7 +3,7 @@ basic set class calculator written in Lua
 
 ## Why?
 
-Lua is a really fast und lightweight scripting language. Ideal for computer-assistend-composition.
+Lua is a really fast und lightweight scripting language. The scripting concept is also very suitable for the field of computer-assistend-composition.
 
 ## Usage
 
