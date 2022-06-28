@@ -1,6 +1,12 @@
 # **pitch-class-lua**
 basic set class calculator written in Lua
 
+## Why?
+
+Lua is a really fast und lightweight scripting language. Ideal for computer-assistend-composition.
+
+## Usage
+
 after installing Lua (ie via homebrew: brew install lua)
 
 enter midi values [0-127] in terminal: 
