@@ -97,7 +97,6 @@ function get_normal_form(chord,invers)
         local pos2 = ((i + posres - 2) % #set0) + 1
           set1[i] = set0[pos2] % 12
         end
-
         return set1
     end
 end
@@ -127,7 +126,6 @@ end
 
 
 function pc_info(chord)
-	
     local normal_a = get_normal_form(chord,false)
     local a = pc2string(normal2prime_form(normal_a,false))
     local b = pc2string(normal2prime_form(get_normal_form(normal_a,true)))
