@@ -101,7 +101,6 @@ function get_normal_form(chord,invers)
     end
 end
 
-
 function normal2prime_form(normal_set)
    local t = {}
    local firstval = normal_set[1]
@@ -110,7 +109,6 @@ function normal2prime_form(normal_set)
    end
    return t
 end
-
 
 function pc2string(arr)
     local stringx  = ""
@@ -123,7 +121,6 @@ function pc2string(arr)
     end
     return stringx
 end
-
 
 function pc_info(chord)
     local normal_a = get_normal_form(chord,false)
