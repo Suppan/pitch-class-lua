@@ -3,7 +3,7 @@ basic set class calculator written in Lua
 
 ## Why?
 
-Lua is a really fast und lightweight scripting language. A perfect tool for computer-assistend-composition.
+Lua is a really fast und lightweight scripting language. A perfect tool for computer-assistend-composition. In 2021 I started to build the application "Delta-Score", a tool for computer-assistend-composition for my personal needs and based on Lua. When I started the project I found out there are not many music related Lua resources out there - compared to other lanugages. To enhance this situation I decided share this code on this platform.   
 
 ## Usage
 
