@@ -107,7 +107,7 @@ function normal2prime_form(normal_set)
    local t = {}
    local firstval = normal_set[1]
    for i = 1, #normal_set do
-   t[i] = (normal_set[i] - firstval) % 12
+        t[i] = (normal_set[i] - firstval) % 12
    end
    return t
 end
