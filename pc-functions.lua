@@ -57,7 +57,7 @@ function get_normal_form(chord,invers)
         table.insert(set2,0)
         return  set2
         else
-        --span test (span test (last - first, penultima last - first, before penultima last - first)
+        --span test (last - first, penultima last - first, before penultima last - first)
         if (#posarr > 1) then
             while (#posarr > 1 and posaddx < (#set0 - 1) ) do
             	--reset setx
