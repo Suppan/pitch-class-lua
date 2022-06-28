@@ -1,5 +1,4 @@
 #!/usr/bin/env lua
-
 require 'pc-functions'
 
 if(#arg > 0) then
