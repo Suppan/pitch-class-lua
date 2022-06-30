@@ -1,8 +1,8 @@
 require 'pc-sets'
 
 function member(arr, x)
-    for _, v in pairs(arr) do
-        if v == x then return true end
+    for i = 1,#arr do
+        if arr[i] == x then return true end
     end
     return false
 end
@@ -10,7 +10,8 @@ end
 function rm_dups(arr)
     local hash = {}
     local t = {}
-    for _,v in ipairs(arr) do
+    for i = 1, #arr do
+    	local v = arr[i]
         if (not hash[v]) then
         t[#t+1] = v
         hash[v] = true
@@ -54,7 +55,7 @@ function get_normal_form(chord,invers)
    end
 
     if(#set0 < 2) then
-        table.insert(set2,0)
+        set2[1] = 0
         return  set2
         else
         --span test (last - first, penultima last - first, before penultima last - first)
@@ -81,7 +82,7 @@ function get_normal_form(chord,invers)
                 posarr = {}
 
                 for i = 1, #set0 do
-                   if(diffx[i] == minx) then table.insert(posarr,i) end
+                   if(diffx[i] == minx) then posarr[#posarr+1] = i end
                 end
                 for i = 1, #set0 do
                    setx[i] = set0[i]
