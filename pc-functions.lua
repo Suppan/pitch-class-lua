@@ -7,6 +7,14 @@ function member(arr, x)
     return false
 end
 
+function list_min(arr)
+   local minx = arr[1]
+   for i = 2, #arr do
+       if(arr[i] < minx) then minx = arr[i] end
+   end
+return minx
+end
+
 function rm_dups(arr)
     local hash = {}
     local t = {}
@@ -70,7 +78,7 @@ function get_normal_form(chord,invers)
                     end
                 end
 
-                local minx = math.min(diffx)[1]
+                local minx = list_min(diffx)
                 posarr = {}
 
                 for i = 1, #set0 do
