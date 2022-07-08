@@ -19,14 +19,6 @@ function rm_dups(arr)
     end
     return t
 end
-  
-function list_min(arr)
-   local minx = arr[1]
-   for i = 2, #arr do
-       if(arr[i] < minx) then minx = arr[i] end
-   end
-return minx
-end
 
 function get_normal_form(chord,invers)
    local set0 = {}                           -- chord -> pc
@@ -78,7 +70,7 @@ function get_normal_form(chord,invers)
                     end
                 end
 
-                local minx = list_min(diffx)
+                local minx = math.min(diffx)[1]
                 posarr = {}
 
                 for i = 1, #set0 do
