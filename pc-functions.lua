@@ -78,7 +78,7 @@ function get_normal_form(chord,invers)
                     end
                 end
 
-                local minx = list_min(diffx)
+                local minx = math.min(diffx)
                 posarr = {}
 
                 for i = 1, #set0 do
