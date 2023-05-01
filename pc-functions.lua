@@ -1,6 +1,5 @@
-local pc = {}
 local sets = require 'pc-sets'
-
+local pc = {}
 
 function member(arr, x)
     for i = 1,#arr do
