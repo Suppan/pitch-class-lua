@@ -1,4 +1,6 @@
-require 'pc-sets'
+local pc = {}
+local sets = require 'pc-sets'
+
 
 function member(arr, x)
     for i = 1,#arr do
@@ -28,7 +30,7 @@ function rm_dups(arr)
     return t
 end
 
-function get_normal_form(chord,invers)
+function pc.get_normal_form(chord,invers)
    local set0 = {}                           -- chord -> pc
    local setx  = {}                          -- to reset
    local set1 = {}                           -- normalform
@@ -102,7 +104,7 @@ function get_normal_form(chord,invers)
     end
 end
 
-function normal2prime_form(normal_set)
+function pc.normal2prime_form(normal_set)
    local t = {}
    local firstval = normal_set[1]
    for i = 1, #normal_set do
@@ -123,82 +125,85 @@ function pc2string(arr)
     return stringx
 end
 
-function pc_info(chord)
-    local normal_a = get_normal_form(chord,false)
-    local normal_b = get_normal_form(normal_a,true)
-    local a = pc2string(normal2prime_form(normal_a))
-    local b = pc2string(normal2prime_form(normal_b))
+function pc.info(chord)
+    local normal_a = pc.get_normal_form(chord,false)
+    local normal_b = pc.get_normal_form(normal_a,true)
+    local a = pc2string(pc.normal2prime_form(normal_a))
+    local b = pc2string(pc.normal2prime_form(normal_b))
     local resx
 
     if(#a == 1) then
-        resx = pc_data1[1]
+        resx = sets.card1[1]
     elseif (#a == 12) then
-        resx = pc_data12[1]
+        resx = sets.card12[1]
     elseif (#a == 11) then
-        resx = pc_data11[1]
+        resx = sets.card11[1]
     elseif (#a == 2) then
-        for j = 1, #pc_data2 do
-           if(pc_data2[j][2] == a or pc_data2[j][2] == b) then
-                resx = pc_data2[j]
+        for j = 1, #sets.card2 do
+           if(sets.card2[j][2] == a or sets.card[j][2] == b) then
+                resx = sets.card2[j]
                 break
            end 
         end   
     elseif (#a == 10) then
-        for j = 1, #pc_data10 do
-           if(pc_data10[j][2] == a or pc_data10[j][2] == b) then
-                resx = pc_data10[j]
+        for j = 1, #sets.card10 do
+           if(sets.card10[j][2] == a or sets.card10[j][2] == b) then
+                resx = sets.card10[j]
                 break
            end 
         end  
     elseif (#a == 3) then
-        for j = 1, #pc_data3 do
-           if(pc_data3[j][2] == a or pc_data3[j][2] == b) then
-                resx = pc_data3[j]
+        for j = 1, #sets.card3 do
+           if(sets.card3[j][2] == a or sets.card3[j][2] == b) then
+                resx = sets.card3[j]
                 break
            end 
         end  
     elseif (#a == 9) then
-        for j = 1, #pc_data9 do
-           if(pc_data9[j][2] == a or pc_data9[j][2] == b) then
-                resx = pc_data9[j]
+        for j = 1, #sets.card9 do
+           if(sets.card9[j][2] == a or sets.card9[j][2] == b) then
+                resx = sets.card9[j]
                 break
            end 
         end  
     elseif (#a == 4) then
-        for j = 1, #pc_data4 do
-           if(pc_data4[j][2] == a or pc_data4[j][2] == b) then
-                resx = pc_data4[j]
+        for j = 1, #sets.card4 do
+           if(sets.card4[j][2] == a or sets.card4[j][2] == b) then
+                resx = sets.card4[j]
                 break
            end 
         end  
     elseif (#a == 8) then
-        for j = 1, #pc_data8 do
-           if(pc_data8[j][2] == a or pc_data8[j][2] == b) then
-                resx = pc_data8[j]
+        for j = 1, #sets.card8 do
+           if(sets.card8[j][2] == a or sets.card8[j][2] == b) then
+                resx = sets.card8[j]
                 break
            end 
         end  
     elseif (#a == 7) then
-        for j = 1, #pc_data7 do
-           if(pc_data7[j][2] == a or pc_data7[j][2] == b) then
-                resx = pc_data7[j]
+        for j = 1, #sets.card7 do
+           if(sets.card7[j][2] == a or sets.card7[j][2] == b) then
+                resx = sets.card7[j]
                 break
            end 
         end 
     elseif (#a == 5) then
-        for j = 1, #pc_data5 do
-           if(pc_data5[j][2] == a or pc_data5[j][2] == b) then
-                resx = pc_data5[j]
+        for j = 1, #sets.card5 do
+           if(sets.card5[j][2] == a or sets.card5[j][2] == b) then
+                resx = sets.card5[j]
                 break
            end 
         end   
     elseif (#a == 6) then
-        for j = 1, #pc_data6 do
-           if(pc_data6[j][2] == a or pc_data6[j][2] == b) then
-                resx = pc_data6[j]
+        for j = 1, #sets.card6 do
+           if(sets.card6[j][2] == a or sets.card6[j][2] == b) then
+                resx = sets.card6[j]
                 break
            end 
         end
     end
     return normal_a,resx[1],resx[2],resx[3]
 end
+
+
+return pc
